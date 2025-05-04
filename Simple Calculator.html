@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)file:///C:/Users/HP/htlm/calcter.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .calculator {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .display {
+            width: 100%;
+            height: 60px;
+            text-align: right;
+            padding: 10px;
+            font-size: 24px;
+            border: none;
+            background-color: #eee;
+            border-bottom: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        button {
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #e9e9e9;
+        }
+
+        .operator {
+            background-color: #ddd;
+        }
+
+        .operator:hover {
+            background-color: #ccc;
+        }
+
+        .equal {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .equal:hover {
+            background-color: #367c39;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <input type="text" class="display" id="display" readonly="">
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="backspace()">⌫</button>
+            <button onclick="appendToDisplay(&#39;%&#39;)">%</button>
+            <button onclick="appendToDisplay(&#39;/&#39;)" class="operator">/</button>
+
+            <button onclick="appendToDisplay(&#39;7&#39;)">7</button>
+            <button onclick="appendToDisplay(&#39;8&#39;)">8</button>
+            <button onclick="appendToDisplay(&#39;9&#39;)">9</button>
+            <button onclick="appendToDisplay(&#39;*&#39;)" class="operator">*</button>
+
+            <button onclick="appendToDisplay(&#39;4&#39;)">4</button>
+            <button onclick="appendToDisplay(&#39;5&#39;)">5</button>
+            <button onclick="appendToDisplay(&#39;6&#39;)">6</button>
+            <button onclick="appendToDisplay(&#39;-&#39;)" class="operator">-</button>
+
+            <button onclick="appendToDisplay(&#39;1&#39;)">1</button>
+            <button onclick="appendToDisplay(&#39;2&#39;)">2</button>
+            <button onclick="appendToDisplay(&#39;3&#39;)">3</button>
+            <button onclick="appendToDisplay(&#39;+&#39;)" class="operator">+</button>
+
+            <button onclick="appendToDisplay(&#39;0&#39;)">0</button>
+            <button onclick="appendToDisplay(&#39;00&#39;)">00</button>
+            <button onclick="appendToDisplay(&#39;.&#39;)">.</button>
+            <button onclick="calculate()" class="equal">=</button>
+        </div>
+    </div>
+
+    <script>
+        let displayValue = '';
+
+        function appendToDisplay(value) {
+            displayValue += value;
+            document.getElementById('display').value = displayValue;
+        }
+
+        function clearDisplay() {
+            displayValue = '';
+            document.getElementById('display').value = displayValue;
+        }
+
+        function calculate() {
+            try {
+                displayValue = eval(displayValue);
+                document.getElementById('display').value = displayValue;
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+
+        function backspace() {
+            displayValue = displayValue.slice(0, -1);
+            document.getElementById('display').value = displayValue;
+        }
+    </script>
+
+
+
+</body></html>
